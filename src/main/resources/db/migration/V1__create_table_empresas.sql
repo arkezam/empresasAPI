@@ -1,0 +1,7 @@
+CREATE TABLE empresas (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    ruc BIGINT UNIQUE NOT NULL,
+    razon_social VARCHAR(300) NOT NULL,
+    direccion VARCHAR(300) NOT NULL,
+    estado BOOLEAN NOT NULL
+);
