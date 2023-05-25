@@ -1,0 +1,1 @@
+insert into usuarios (usuarioname,clave) values ('arkezam', '$2a$10$ZoQ38dzqorFoXNxMxr1MteoD5.CTLFA4V7OUbdNl5oE2Co7XKanMK');
