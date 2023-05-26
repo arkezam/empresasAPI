@@ -1,5 +1,6 @@
 package com.trust.empresasAPI.model;
 
+import com.trust.empresasAPI.dto.DatosActualizarEmpresa;
 import com.trust.empresasAPI.dto.DatosRegistroEmpresa;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -36,5 +37,10 @@ public class Empresa {
 
     public Empresa() {
 
+    }
+
+    public void actualizarDatos(DatosActualizarEmpresa datosActualizarEmpresa) {
+        this.razonSocial = datosActualizarEmpresa.razonSocial();
+        this.direccion = datosActualizarEmpresa.direccion();
     }
 }

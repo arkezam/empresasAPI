@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -29,10 +30,10 @@ public class SecurityFilter extends OncePerRequestFilter {
         if ( token != null){
             token = token.replace("Bearer ","");
 
-            var subject = tokenService.getSubject(token);
+            String subject = tokenService.getSubject(token);
             if (subject != null){
                 System.out.println("Token Valido!");
-                var usuario = usuarioRepository.findByUsuarioname(subject);
+                UserDetails usuario = usuarioRepository.findByUsuarioname(subject);
                 var authentication = new UsernamePasswordAuthenticationToken(usuario,null,usuario.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }

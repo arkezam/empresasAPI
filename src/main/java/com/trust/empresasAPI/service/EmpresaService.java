@@ -1,5 +1,6 @@
 package com.trust.empresasAPI.service;
 
+import com.trust.empresasAPI.dto.DatosActualizarEmpresa;
 import com.trust.empresasAPI.dto.DatosRegistroEmpresa;
 import com.trust.empresasAPI.model.Empresa;
 import com.trust.empresasAPI.repository.EmpresaRepository;
@@ -18,7 +19,17 @@ public class EmpresaService {
         Empresa empresa = new Empresa(datosRegistroEmpresa);
         return empresaRepository.save(empresa);
     }
+    public Empresa eliminarEmpresa(Long id) {
+        Empresa empresa = empresaRepository.getReferenceById(id);
+        empresaRepository.delete(empresa);
+        return empresa;
+    }
 
+    public Empresa actualizarEmpresa(DatosActualizarEmpresa datosActualizarEmpresa){
+       Empresa empresa = empresaRepository.getReferenceById(datosActualizarEmpresa.id());
+        empresa.actualizarDatos(datosActualizarEmpresa);
+        return empresa;
+    }
 
     public List<Empresa> obtenerUltimosRegistros() {
         List<Empresa> ultimosRegistros = empresaRepository.findTop3ByOrderByIdDesc();

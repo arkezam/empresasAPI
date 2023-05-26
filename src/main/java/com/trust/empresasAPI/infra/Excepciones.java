@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestControllerAdvice
@@ -25,11 +26,15 @@ public class Excepciones {
         return ResponseEntity.badRequest().body(errores);
     }
 
+    @ExceptionHandler(SQLException.class)
+    public ResponseEntity tratarErrorSQL(){
+        return ResponseEntity.badRequest().build();
+    }
+
     private record DatosErrorValidacion(String campo, String error){
         public DatosErrorValidacion(FieldError error){
             this(error.getField(), error.getDefaultMessage());
         }
-
-
     }
+
 }

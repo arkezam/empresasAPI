@@ -24,26 +24,19 @@ public class UsuarioController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository; //eliminar
+
 
     @Autowired
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity autenticarUsuario(@RequestBody @Valid DatosAuthUsuario datosAuthUsuario){
+    public ResponseEntity<DatosJWTToken> autenticarUsuario(@RequestBody @Valid DatosAuthUsuario datosAuthUsuario){
         Authentication AuthToken = new UsernamePasswordAuthenticationToken(datosAuthUsuario.usuarioname(),datosAuthUsuario.clave());
         authenticationManager.authenticate(AuthToken);
-        var usuarioAutenticado = authenticationManager.authenticate(AuthToken);
-        var JWToken =  tokenService.generarToken((Usuario) usuarioAutenticado.getPrincipal());
+        Authentication usuarioAutenticado = authenticationManager.authenticate(AuthToken);
+        String JWToken =  tokenService.generarToken((Usuario) usuarioAutenticado.getPrincipal());
         return ResponseEntity.ok(new DatosJWTToken(JWToken));
 
     }
-    @GetMapping
-    public ResponseEntity listaUsuarios(){
-        List<Usuario> usuario = usuarioRepository.findAll();
-        return ResponseEntity.ok(usuario);
-    }
-
 
 }

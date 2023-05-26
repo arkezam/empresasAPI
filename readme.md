@@ -12,37 +12,45 @@ Aplicación REST desarrollada como parte de una evaluación de Desarrollo de Sof
 
 ## Características
 
-- [Característica 1]: Servicios Rest utilizando metodos POST GET DELETE PUT.
-- [Característica 2]: Tratamiento de errores 500.
-- [Característica 3]: Seguridad con Spring Security, uso de JWT para acceso, encriptación.
-- [Característica 4]: Registro y obtencion de datos de empresa.
-- [Característica 5]: Uso de JPA y H2 para persistencia de datos.
-- [Característica 6]: Validaciones.
-- [Característica 7]: Uso de Auth0 para autenticación.
+-  Servicios Rest utilizando metodos POST GET DELETE PUT.
+-  Tratamiento de errores 500.
+-  Seguridad con Spring Security, uso de JWT para acceso, encriptación.
+-  Registro y obtencion de datos de empresa.
+-  Uso de JPA y H2 para persistencia de datos.
+-  Validaciones.
+-  Uso de Auth0 para autenticación.
 
 ## Requisitos del sistema
 
-- [Requisito 1]: Java 17.
-- [Requisito 2]: Spring Boot 3.1.0.
-- [Requisito 3]: Maven .
-- Postman
-- ...
+-  Java 17.
+-  Spring Boot 3.1.0.
+-  Maven .
+-  Postman
 
 ## Instalación
 
 1. Clona este repositorio en tu máquina local.
-2. [Paso 2]: Instalar drivers h2.
-3. [Paso 3]: Instalar dependencias.
-4. [Paso 4]: Ejecutar.
+2. Instalar drivers para la base de datos H2.
+3.  Instalar dependencias.
+4. Ejecutar.
 
 
 ## Uso
 
 1. El puerto que se utiliza en esta aplicación es el puerto por defecto 8080, en localhost
-2. El usuario y contraseña para el login y generacion de token es "usuarioname" : "arkezam", "clave": "1234"
-3. las URL son:
+2. Para poder utilizar 
+3. Para tener accero al REST de EMPRESAS el cliente debe iniciar sesion y enviar el token por los headers.
+   - El JSON para generar el token es:
+   ```
+   {"usuarioname" : "arkezam", "clave": "1234"}
+   ```
+   debe ingresarse en     http://localhost:8080/login
+4. Una vez generado el token se debe utilizar el token en Authorization
+
+
+
+5. la url para el REST de empresa son:
    - http://localhost:8080/empresa
-   - http://localhost:8080/empresa/ultimos
    - http://localhost:8080/empresa/ultimos
 
 
